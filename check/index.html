@@ -1,0 +1,588 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free AI visibility check | Citekind</title>
+<meta name="description" content="Free AI visibility check for B2B tech. See if ChatGPT, Perplexity and other AI assistants can read your site, then test whether they name you to buyers.">
+<link rel="canonical" href="https://citekind.com/check/">
+<meta property="og:url" content="https://citekind.com/check/">
+<meta property="og:title" content="Free AI visibility check | Citekind">
+<meta property="og:description" content="Is your site ready for AI search, and do AI assistants actually name you? Get an instant score and quick fixes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2318212b'/%3E%3Cpath d='M9 10h5v5H9zM18 17h5v5h-5z' fill='%2337d6a6'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"WebApplication","name":"Citekind free AI visibility check","url":"https://citekind.com/check/","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"GBP"},"description":"Checks whether a website is readable by AI crawlers and helps you test whether AI assistants name your company.","provider":{"@type":"Organization","name":"Citekind","url":"https://citekind.com/"}},
+ {"@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"Does the AI visibility check use my ChatGPT account?","acceptedAnswer":{"@type":"Answer","text":"No. The readiness check reads your public website. The self-test opens ChatGPT and Perplexity in your own browser so you can see the real answers yourself."}},
+  {"@type":"Question","name":"How accurate is the score?","acceptedAnswer":{"@type":"Answer","text":"It's indicative. We check your home page, robots.txt, llms.txt and sitemap. A full Citekind audit tests hundreds of buyer prompts across all the major AI assistants."}}
+ ]}
+]}
+</script>
+<style>
+:root{
+  --ink:#18212b; --ink-2:#232e3a; --deep:#10161d; --paper:#f6f4ef; --card:#ffffff;
+  --text:#18202a; --muted:#5a6570; --line:#e3ded3;
+  --accent:#37d6a6; --accent-ink:#0e7a5c; --warm:#f2b84b; --warm-ink:#9a6500; --bad:#c2453b;
+  --radius:14px; --max:1120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+[id]{scroll-margin-top:84px}
+body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--paper);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.narrow{max-width:860px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.15;letter-spacing:-.01em}
+h2{font-size:clamp(26px,3.6vw,38px);margin-bottom:12px}
+h3{font-size:20px;margin-bottom:6px}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:12px}
+.lead{font-size:19px;color:var(--muted);max-width:680px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;border-radius:999px;font-weight:600;text-decoration:none;font-size:16px;transition:transform .15s,background .15s;border:0;cursor:pointer;font-family:inherit;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn:disabled{opacity:.6;cursor:wait;transform:none}
+.btn-primary{background:var(--accent);color:var(--ink)}
+.btn-primary:hover{background:#5ee3bb}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{background:var(--ink-2)}
+.btn-line{background:#fff;color:var(--ink);border:1px solid #cfd6dc}
+.btn-line:hover{border-color:var(--ink)}
+.btn-sm{padding:9px 14px;font-size:14px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+:focus-visible{outline:2px solid var(--accent-ink);outline-offset:2px}
+
+/* nav */
+header{background:var(--ink);color:#fff;position:sticky;top:0;z-index:10}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:10px;font-family:Fraunces,serif;font-size:22px;font-weight:600;text-decoration:none}
+.logo svg{width:26px;height:26px}
+.nav ul{display:flex;gap:28px;list-style:none;font-size:15px}
+.nav ul a{text-decoration:none;opacity:.8;white-space:nowrap}
+.nav ul a:hover,.nav ul a[aria-current]{opacity:1}
+.nav ul a[aria-current]{color:var(--accent)}
+.nav .btn{padding:10px 18px;font-size:15px}
+@media(max-width:960px){.nav ul{display:none}}
+
+/* hero */
+.hero{background:var(--ink);color:#fff;padding:72px 0 84px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-180px;top:-140px;width:540px;height:540px;border-radius:50%;background:radial-gradient(circle,rgba(55,214,166,.2),transparent 65%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+.hero .eyebrow{color:var(--accent)}
+.hero h1{font-size:clamp(34px,5.2vw,58px);max-width:860px;margin-bottom:18px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lead{color:#b7c1c9}
+.urlform{margin-top:32px;display:flex;gap:10px;max-width:640px;background:var(--ink-2);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px}
+.urlform input{flex:1;min-width:0;background:transparent;border:0;color:#fff;font:inherit;font-size:17px;padding:10px 16px}
+.urlform input::placeholder{color:#7f8b95}
+.urlform input:focus{outline:none}
+.urlform:focus-within{border-color:var(--accent)}
+.hero-notes{display:flex;gap:8px 22px;flex-wrap:wrap;margin-top:16px;font-size:14px;color:#98a4ae}
+.hero-notes span::before{content:"✓";color:var(--accent);margin-right:6px;font-weight:600}
+.err{margin-top:14px;color:#ffb4a8;font-size:15px;min-height:1px}
+@media(max-width:560px){
+  .urlform{flex-direction:column;border-radius:16px;padding:8px}
+  .urlform input{padding:10px}
+  .urlform .btn{width:100%}
+}
+
+section{padding:72px 0}
+.how-strip{background:#fff;border-bottom:1px solid var(--line);padding:36px 0}
+.how-strip .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.how-strip b{display:block;font-family:Fraunces,serif;font-size:19px;color:var(--ink);margin-bottom:2px}
+.how-strip span{font-size:15px;color:var(--muted)}
+.how-strip i{font-style:normal;display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--accent);font-size:13px;font-weight:600;margin-right:8px;vertical-align:2px}
+@media(max-width:760px){.how-strip .wrap{grid-template-columns:1fr;gap:14px}}
+
+/* panels */
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+.panel + .panel{margin-top:20px}
+.muted{color:var(--muted)}
+.small{font-size:14px;color:var(--muted)}
+.tiny{font-size:13px;color:var(--muted)}
+
+/* loading */
+.loading{display:flex;align-items:center;gap:14px;color:var(--muted)}
+.spinner{width:22px;height:22px;border-radius:50%;border:3px solid var(--line);border-top-color:var(--accent-ink);animation:spin .8s linear infinite;flex-shrink:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading ol{list-style:none;font-size:15px}
+.loading li{opacity:.45;transition:opacity .3s}
+.loading li.on{opacity:1}
+
+/* score */
+.score-head{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.ring{--v:0;--c:var(--accent-ink);width:132px;height:132px;border-radius:50%;background:conic-gradient(var(--c) calc(var(--v)*1%),#ece8df 0);display:grid;place-items:center;position:relative}
+.ring::before{content:"";position:absolute;inset:12px;border-radius:50%;background:#fff}
+.ring b{position:relative;font-family:Fraunces,serif;font-size:40px;line-height:1;color:var(--ink);text-align:center}
+.ring b small{display:block;font-family:Inter,sans-serif;font-size:12px;font-weight:500;color:var(--muted);margin-top:4px}
+.grade{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:999px;margin-bottom:8px}
+.g-good{background:#eaf8f2;color:var(--accent-ink)}
+.g-mid{background:#fdf3de;color:var(--warm-ink)}
+.g-bad{background:#fbe9e7;color:var(--bad)}
+.score-head h3{font-size:24px}
+.site{font-size:14px;color:var(--muted);word-break:break-all}
+@media(max-width:560px){.score-head{grid-template-columns:1fr;gap:16px}.ring{width:112px;height:112px}.ring b{font-size:34px}}
+
+.checklist{list-style:none;margin-top:24px;border-top:1px solid var(--line)}
+.checklist li{display:grid;grid-template-columns:22px 1fr auto;gap:12px;align-items:start;padding:12px 0;border-bottom:1px solid var(--line);font-size:16px}
+.dot{width:18px;height:18px;border-radius:50%;margin-top:3px;display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff}
+.s-pass .dot{background:var(--accent-ink)}
+.s-warn .dot{background:var(--warm)}
+.s-fail .dot{background:var(--bad)}
+.pts{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.checklist .d{display:block;font-size:14px;color:var(--muted);margin-top:2px}
+.locked .d{filter:blur(4px);user-select:none;pointer-events:none}
+
+.fixes{margin-top:24px}
+.fixes h3{font-size:19px;margin-bottom:10px}
+.fixes ol{list-style:none;display:grid;gap:10px;counter-reset:fx}
+.fixes li{counter-increment:fx;display:grid;grid-template-columns:30px 1fr;gap:12px;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;font-size:15px}
+.fixes li::before{content:counter(fx);width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--accent);display:grid;place-items:center;font-size:13px;font-weight:600}
+.fixes li b{display:block;font-size:16px;color:var(--ink)}
+.fixes li em{font-style:normal;font-size:12px;font-weight:600;color:var(--accent-ink);margin-left:6px}
+.indicative{margin-top:18px;font-size:13px;color:var(--muted);border-left:3px solid var(--line);padding-left:12px}
+
+/* self-test */
+.selftest{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{font-size:14px;font-weight:600;display:grid;gap:6px}
+label .opt{font-weight:400;color:var(--muted)}
+input,select,textarea{font:inherit;font-weight:400;font-size:16px;padding:12px 14px;border:1px solid #cfd6dc;border-radius:10px;background:#fff;color:var(--text);width:100%}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);border-color:transparent}
+.formgrid{display:grid;gap:16px;margin-top:24px}
+@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+.prompts{list-style:none;display:grid;gap:14px;margin-top:26px;counter-reset:pr}
+.prompt{counter-increment:pr;border:1px solid var(--line);border-radius:12px;padding:18px;background:var(--paper)}
+.prompt .q{display:flex;gap:12px;font-size:16px;color:var(--ink);font-weight:500}
+.prompt .q::before{content:counter(pr);flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--accent);display:grid;place-items:center;font-size:13px;font-weight:600}
+.prompt .row{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-top:14px;padding-left:38px}
+.prompt .asks{display:flex;gap:8px;flex-wrap:wrap}
+.tick{display:inline-flex;align-items:center;gap:8px;font-weight:500;font-size:14px;cursor:pointer;background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 12px}
+.tick input{width:16px;height:16px;padding:0;accent-color:var(--accent-ink)}
+.tick:has(input:checked){border-color:var(--accent-ink);background:#eaf8f2}
+@media(max-width:560px){.prompt .row{padding-left:0}}
+.vis{margin-top:22px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;background:var(--ink);color:#fff;border-radius:var(--radius);padding:22px 24px}
+.vis .big{font-family:Fraunces,serif;font-size:42px;line-height:1;color:var(--accent)}
+.vis p{color:#b7c1c9;font-size:15px;max-width:560px}
+.vis p b{color:#fff}
+
+/* gate */
+.gate{background:var(--ink);color:#fff}
+.gate .eyebrow{color:var(--accent)}
+.gate .lead{color:#b7c1c9}
+.gate-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.gate form{background:#fff;color:var(--text);border-radius:var(--radius);padding:28px;display:grid;gap:14px}
+.gate ul{list-style:none;margin-top:22px}
+.gate li{padding:9px 0 9px 30px;border-top:1px solid rgba(255,255,255,.08);position:relative;color:#e2e8ec;font-size:16px}
+.gate li::before{content:"✓";position:absolute;left:4px;color:var(--accent);font-weight:700}
+@media(max-width:860px){.gate-grid{grid-template-columns:1fr;gap:28px}}
+
+/* full report */
+.report .item{border-top:1px solid var(--line);padding:18px 0}
+.report .item:first-of-type{border-top:0}
+.report .item h3{display:flex;align-items:center;gap:10px;font-size:19px}
+.report .item h3 .pts{margin-left:auto;font-family:Inter,sans-serif;font-weight:500}
+.report .item p{font-size:15px;color:var(--muted);margin-top:6px}
+.report .item p.fix{color:var(--text)}
+.report .item p.fix b{color:var(--accent-ink)}
+.bots{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.bots span{font-size:12px;border-radius:999px;padding:3px 10px;border:1px solid var(--line);background:#fff}
+.bots span.no{border-color:#e9b8b2;background:#fbe9e7;color:var(--bad)}
+.report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+
+.cta{background:var(--ink);color:#fff;border-radius:var(--radius);padding:30px;display:flex;justify-content:space-between;align-items:center;gap:20px 32px;flex-wrap:wrap;margin-top:24px}
+.cta p{font-family:Fraunces,Georgia,serif;font-size:24px;font-weight:600;line-height:1.25;max-width:600px}
+.cta p span{display:block;font-family:Inter,sans-serif;font-size:15px;font-weight:400;color:#b7c1c9;margin-top:6px}
+
+.faq details{border-top:1px solid var(--line);padding:18px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:20px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:22px;line-height:1;color:var(--accent-ink)}
+.faq details[open] summary::after{content:"–"}
+.faq details p{color:var(--muted);margin-top:10px;font-size:16px}
+
+[hidden]{display:none!important}
+footer{background:var(--deep);color:#98a4ae;font-size:14px;padding:32px 0}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+@media print{
+  header,.hero,.how-strip,.selftest form,.gate,.faq,footer,.report-actions,.no-print,.prompt .asks{display:none!important}
+  body{background:#fff;font-size:12pt}
+  section{padding:12pt 0}
+  .panel{border:0;padding:0}
+  .locked .d{filter:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap nav" aria-label="Main">
+    <a class="logo" href="/" aria-label="Citekind home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#232e3a"/><path d="M8 9h6v6H8zM18 17h6v6h-6z" fill="#37d6a6"/></svg>
+      Citekind
+    </a>
+    <ul>
+      <li><a href="/#how">How it works</a></li>
+      <li><a href="/#audit">The audit</a></li>
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/check/" aria-current="page">Free AI check</a></li>
+    </ul>
+    <a class="btn btn-primary" href="/#contact">Book an audit</a>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Free AI visibility check</p>
+    <h1>Can AI assistants read your site, and <em>do they name you?</em></h1>
+    <p class="lead">Enter your website for an instant AI readiness score with quick fixes. Then run a two-minute self-test to see whether ChatGPT and Perplexity recommend you to buyers.</p>
+    <form class="urlform" id="urlform" novalidate>
+      <label class="sr-only" for="url">Your website</label>
+      <input id="url" name="url" type="text" inputmode="url" autocomplete="url" placeholder="yourcompany.com" required>
+      <span class="hp" aria-hidden="true"><label>Leave this empty <input name="hp" tabindex="-1" autocomplete="off"></label></span>
+      <button class="btn btn-primary" type="submit" id="runbtn">Check my site</button>
+    </form>
+    <p class="err" id="urlerr" role="alert"></p>
+    <div class="hero-notes"><span>Free, no sign-up to see your score</span><span>No AI accounts needed</span><span>Takes about 10 seconds</span></div>
+    <noscript><p class="err">The checker needs JavaScript turned on.</p></noscript>
+  </div>
+</section>
+
+<div class="how-strip">
+  <div class="wrap">
+    <div><b><i>1</i>Readiness</b><span>We read your site the way AI crawlers do: robots.txt, structured data, headline, plain-HTML content and more.</span></div>
+    <div><b><i>2</i>Self-test</b><span>We write five buyer prompts for your category. You ask ChatGPT and Perplexity in one click and tick when you're named.</span></div>
+    <div><b><i>3</i>Your report</b><span>See your scores instantly, then unlock the full report with every finding and the fix for each.</span></div>
+  </div>
+</div>
+
+<section id="results" hidden aria-live="polite">
+  <div class="wrap narrow">
+    <div class="panel" id="loading" hidden>
+      <div class="loading">
+        <span class="spinner" aria-hidden="true"></span>
+        <ol id="loadsteps">
+          <li>Loading your home page…</li>
+          <li>Reading robots.txt for AI crawlers…</li>
+          <li>Looking for llms.txt and your sitemap…</li>
+          <li>Checking structured data and copy…</li>
+        </ol>
+      </div>
+    </div>
+    <div class="panel" id="summary" hidden>
+      <div class="score-head">
+        <div class="ring" id="ring"><b><span id="score">0</span><small>out of 100</small></b></div>
+        <div>
+          <span class="grade" id="grade"></span>
+          <h3 id="headline"></h3>
+          <p class="site" id="site"></p>
+        </div>
+      </div>
+      <ul class="checklist locked" id="checklist"></ul>
+      <div class="fixes" id="topfixes"></div>
+      <p class="indicative">This score is indicative. It's based on your home page, robots.txt, llms.txt and sitemap, not a test of what AI assistants actually say. The self-test below covers that side.</p>
+      <p class="no-print" style="margin-top:18px"><a class="btn btn-dark btn-sm" href="#selftest">Next: test what AI says about you</a> <a class="btn btn-line btn-sm" href="#gate">Unlock the full report</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="selftest" id="selftest">
+  <div class="wrap narrow">
+    <p class="eyebrow">Step 2: guided self-test</p>
+    <h2>Do AI assistants name you when buyers ask?</h2>
+    <p class="lead">Tell us your company and what you sell. We'll write five prompts a real buyer might type. Open each in ChatGPT or Perplexity, then tick if you were named.</p>
+    <form class="formgrid" id="promptform">
+      <div class="grid2">
+        <label>Company name<input id="company" required autocomplete="organization" placeholder="e.g. Acme Security"></label>
+        <label><span>What you sell <span class="opt">(plural)</span></span><input id="category" required placeholder="e.g. MDR providers, payroll platforms"></label>
+      </div>
+      <div class="grid2">
+        <label><span>Who buys it <span class="opt">(optional)</span></span><input id="audience" placeholder="e.g. mid-sized fintechs"></label>
+        <label><span>Main market <span class="opt">(optional)</span></span><input id="region" placeholder="e.g. the UK"></label>
+      </div>
+      <label><span>A competitor you often lose to <span class="opt">(optional)</span></span><input id="competitor" placeholder="e.g. a market leader"></label>
+      <div><button class="btn btn-dark" type="submit">Write my buyer prompts</button></div>
+    </form>
+    <ol class="prompts" id="prompts" hidden></ol>
+    <div class="vis" id="vis" hidden>
+      <div class="big" id="visscore">0%</div>
+      <p id="vistext"></p>
+    </div>
+    <p class="tiny" id="visnote" hidden style="margin-top:12px">Answers vary by person, location, account and day, and the free versions don't always search the web. Treat this as a snapshot. A Citekind audit tests hundreds of prompts across ChatGPT, Perplexity, Gemini, Copilot and Google AI Overviews.</p>
+  </div>
+</section>
+
+<section class="gate" id="gate">
+  <div class="wrap gate-grid">
+    <div>
+      <p class="eyebrow">Your full report</p>
+      <h2>Unlock every finding and the fix for each</h2>
+      <p class="lead">The full report explains each check, which AI crawlers you block, and your self-test results in one place. You can save it as a PDF.</p>
+      <ul>
+        <li>All nine readiness checks, with the detail behind each score</li>
+        <li>Your AI crawler access, bot by bot</li>
+        <li>Prioritised fixes your team can ship this month</li>
+        <li>A personal follow-up from Citekind's founder, if you'd like one</li>
+      </ul>
+    </div>
+    <form name="ai-check-report" id="gateform" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+      <input type="hidden" name="form-name" value="ai-check-report">
+      <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <input type="hidden" name="website">
+      <input type="hidden" name="readiness-score">
+      <input type="hidden" name="visibility-score">
+      <input type="hidden" name="category">
+      <input type="hidden" name="report">
+      <div class="grid2">
+        <label>Name<input name="name" required autocomplete="name"></label>
+        <label>Work email<input type="email" name="email" required autocomplete="email"></label>
+      </div>
+      <label>Company<input name="company" id="gatecompany" autocomplete="organization"></label>
+      <button class="btn btn-primary" type="submit" id="gatebtn">Show my full report</button>
+      <p class="err" id="gateerr" role="alert" style="color:var(--bad);margin:0"></p>
+      <p class="tiny">We'll only use your details to follow up about your report. No mailing lists, and nothing shared.</p>
+    </form>
+  </div>
+</section>
+
+<section id="report" hidden>
+  <div class="wrap narrow">
+    <p class="eyebrow">Full report</p>
+    <h2 id="reporttitle">Your AI visibility report</h2>
+    <p class="small" id="reportmeta"></p>
+    <div class="panel report" id="reportready" hidden></div>
+    <div class="panel report" id="reportself" hidden></div>
+    <div class="panel" id="reportempty" hidden><p class="muted">Run the readiness check at the top of the page and the self-test above, and your results will appear here.</p></div>
+    <div class="report-actions">
+      <button class="btn btn-line btn-sm" type="button" onclick="window.print()">Save as PDF</button>
+      <a class="btn btn-line btn-sm" href="#top" id="again">Check another site</a>
+    </div>
+    <div class="cta">
+      <p>Want to know exactly what AI says about you, and how to change it?<span>The AI Visibility Audit tests your real buyer prompts across every major assistant, benchmarks you against competitors and gives you a 90-day plan.</span></p>
+      <a class="btn btn-primary" href="/#contact">Book your audit</a>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap narrow">
+    <h2>About this check</h2>
+    <details><summary>Does it use my ChatGPT or Perplexity account?</summary><p>No. The readiness check only reads your public website. The self-test opens ChatGPT and Perplexity in your own browser so you see the real answers. We never see them.</p></details>
+    <details><summary>Why does robots.txt matter for AI?</summary><p>AI assistants use crawlers such as OAI-SearchBot, PerplexityBot and Claude-SearchBot to read pages when someone asks a question. If robots.txt blocks them, they can't read or cite you. Blocking training-only crawlers such as GPTBot is a separate choice, and we flag it differently.</p></details>
+    <details><summary>How accurate is the score?</summary><p>It's indicative. It checks the technical basics that decide whether AI can find and understand you. It can't see firewall rules, other pages, or what third-party sites say about you. Those are covered in the full audit.</p></details>
+    <details><summary>What do you do with my website address?</summary><p>We fetch your public pages once to run the checks. We don't store the results unless you ask for the full report.</p></details>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Citekind. AI search visibility for B2B tech.</span>
+    <span>Based in Buckinghamshire, working across the UK and Europe.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var state = { ready: null, prompts: [], unlocked: false };
+  var esc = function(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); };
+  var sym = { pass: "✓", warn: "!", fail: "×" };
+
+  function grade(score){
+    if (score >= 80) return ["g-good", "AI-ready", "Strong foundations for AI search"];
+    if (score >= 55) return ["g-mid", "Partly ready", "Good start, with gaps AI will notice"];
+    return ["g-bad", "At risk", "AI assistants will struggle to read and trust you"];
+  }
+
+  // ---- Part 1: readiness ----
+  var steps;
+  $("urlform").addEventListener("submit", function(e){
+    e.preventDefault();
+    var url = $("url").value.trim();
+    $("urlerr").textContent = "";
+    if (!url) { $("urlerr").textContent = "Please enter your website address."; $("url").focus(); return; }
+    $("runbtn").disabled = true; $("runbtn").textContent = "Checking…";
+    $("results").hidden = false; $("loading").hidden = false; $("summary").hidden = true;
+    var lis = $("loadsteps").children, i = 0;
+    [].forEach.call(lis, function(li){ li.classList.remove("on"); });
+    lis[0].classList.add("on");
+    clearInterval(steps);
+    steps = setInterval(function(){ i = Math.min(i + 1, lis.length - 1); lis[i].classList.add("on"); }, 1400);
+    $("results").scrollIntoView({ behavior: "smooth", block: "start" });
+
+    fetch("/api/check", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ url: url, hp: e.target.hp.value }) })
+      .then(function(r){ return r.json().catch(function(){ return { error: r.status === 429 ? "Too many checks right now. Please try again in a minute." : "Something went wrong. Please try again." }; }); })
+      .then(function(data){
+        if (!data || data.error) throw new Error(data && data.error || "Something went wrong.");
+        state.ready = data; showSummary(data);
+        try { if (!$("company").value) $("company").value = guessName(data.url); } catch(_){}
+      })
+      .catch(function(err){
+        $("results").hidden = true;
+        $("urlerr").textContent = err.message || "Something went wrong. Please try again.";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      })
+      .then(function(){ clearInterval(steps); $("loading").hidden = true; $("runbtn").disabled = false; $("runbtn").textContent = "Check my site"; });
+  });
+
+  function guessName(u){
+    var h = new URL(u).hostname.replace(/^www\./, "").split(".")[0];
+    return h.charAt(0).toUpperCase() + h.slice(1);
+  }
+
+  function showSummary(d){
+    var g = grade(d.score);
+    $("summary").hidden = false;
+    $("score").textContent = d.score;
+    var ring = $("ring");
+    ring.style.setProperty("--c", d.score >= 80 ? "var(--accent-ink)" : d.score >= 55 ? "var(--warm)" : "var(--bad)");
+    ring.style.setProperty("--v", d.score);
+    $("grade").className = "grade " + g[0]; $("grade").textContent = g[1];
+    $("headline").textContent = g[2];
+    $("site").textContent = d.url;
+    $("checklist").innerHTML = d.checks.map(function(c){
+      return '<li class="s-' + c.status + '"><span class="dot" aria-hidden="true">' + sym[c.status] + '</span><span>' + esc(c.label) +
+        '<span class="d">' + esc(c.detail) + '</span></span><span class="pts">' + c.points + ' / ' + c.max + '</span></li>';
+    }).join("");
+    $("checklist").classList.toggle("locked", !state.unlocked);
+    var top = d.fixes.slice(0, 3);
+    $("topfixes").innerHTML = top.length
+      ? '<h3>Your top quick fixes</h3><ol>' + top.map(function(f){ return '<li><span><b>' + esc(f.label) + '<em>+' + f.gain + ' pts</em></b>' + esc(f.fix) + '</span></li>'; }).join("") + '</ol>'
+      : '<h3>No quick fixes needed</h3><p class="small">Your technical basics are in good shape. The next question is whether AI actually recommends you, so try the self-test below.</p>';
+    syncGate(); if (state.unlocked) renderReport();
+    $("summary").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  // ---- Part 2: self-test ----
+  $("promptform").addEventListener("submit", function(e){
+    e.preventDefault();
+    var co = $("company").value.trim(), cat = $("category").value.trim();
+    if (!co || !cat) { (co ? $("category") : $("company")).focus(); return; }
+    var aud = $("audience").value.trim() || "B2B companies";
+    var reg = $("region").value.trim();
+    var inReg = reg ? " in " + reg.replace(/^in\s+/i, "") : "";
+    var comp = $("competitor").value.trim();
+    state.prompts = [
+      { q: "What are the best " + cat + " for " + aud + inReg + "?" },
+      { q: "I'm building a shortlist of " + cat + " for " + aud + inReg + ". Which five should I look at, and why?" },
+      { q: comp ? "What are the best alternatives to " + comp + "? I'm looking at " + cat + " for " + aud + "." : "Which " + cat + inReg + " have the best reviews from " + aud + "?" },
+      { q: "Compare the leading " + cat + inReg + " on features, pricing and customer support." },
+      { q: "What do you know about " + co + "? Would you recommend them as one of the " + cat + " for " + aud + "?", brand: true }
+    ];
+    state.prompts.forEach(function(p){ p.chatgpt = false; p.perplexity = false; });
+    state.company = co; state.category = cat;
+    $("prompts").innerHTML = state.prompts.map(function(p, i){
+      var enc = encodeURIComponent(p.q);
+      var lbl = p.brand ? "Recommended in" : "Named in";
+      return '<li class="prompt"><div class="q">' + esc(p.q) + '</div><div class="row">' +
+        '<span class="asks"><a class="btn btn-dark btn-sm" target="_blank" rel="noopener" href="https://chatgpt.com/?q=' + enc + '">Ask ChatGPT ↗</a>' +
+        '<a class="btn btn-line btn-sm" target="_blank" rel="noopener" href="https://www.perplexity.ai/search?q=' + enc + '">Ask Perplexity ↗</a></span>' +
+        '<label class="tick"><input type="checkbox" data-i="' + i + '" data-e="chatgpt"> ' + lbl + ' ChatGPT</label>' +
+        '<label class="tick"><input type="checkbox" data-i="' + i + '" data-e="perplexity"> ' + lbl + ' Perplexity</label></div></li>';
+    }).join("");
+    $("prompts").hidden = false; $("vis").hidden = false; $("visnote").hidden = false;
+    if (!$("gatecompany").value) $("gatecompany").value = co;
+    updateVis(); syncGate();
+    $("prompts").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  $("prompts").addEventListener("change", function(e){
+    var t = e.target; if (!t.dataset || t.dataset.i == null) return;
+    state.prompts[+t.dataset.i][t.dataset.e] = t.checked;
+    updateVis(); syncGate(); if (state.unlocked) renderReport();
+  });
+
+  function visScore(){
+    var n = 0; state.prompts.forEach(function(p){ n += (p.chatgpt ? 1 : 0) + (p.perplexity ? 1 : 0); });
+    return { named: n, total: state.prompts.length * 2, pct: state.prompts.length ? Math.round(100 * n / (state.prompts.length * 2)) : 0 };
+  }
+  function visText(v){
+    if (v.named === 0) return "Tick a box each time you're named. If AI didn't mention you at all, that's the most common result we see, and the most fixable.";
+    if (v.pct < 40) return "<b>Patchy.</b> You're named in " + v.named + " of " + v.total + " answers. Buyers asking AI for a shortlist will usually see competitors first.";
+    if (v.pct < 80) return "<b>Visible, not yet consistent.</b> You're named in " + v.named + " of " + v.total + " answers. The gap is usually third-party proof and answer-ready content.";
+    return "<b>Strong.</b> You're named in " + v.named + " of " + v.total + " answers. Next, check how you're described and whether the details are accurate.";
+  }
+  function updateVis(){ var v = visScore(); $("visscore").textContent = v.pct + "%"; $("vistext").innerHTML = visText(v); }
+
+  // ---- Gate + full report ----
+  function plainReport(){
+    var out = [];
+    if (state.ready) {
+      out.push("AI readiness: " + state.ready.score + "/100 for " + state.ready.url);
+      state.ready.checks.forEach(function(c){ out.push("- " + c.label + ": " + c.points + "/" + c.max + " (" + c.status + ") " + c.detail); });
+    }
+    if (state.prompts.length) {
+      var v = visScore();
+      out.push("", "Self-test (" + state.company + ", " + state.category + "): named in " + v.named + "/" + v.total);
+      state.prompts.forEach(function(p){ out.push("- " + p.q + " | ChatGPT: " + (p.chatgpt ? "yes" : "no") + " | Perplexity: " + (p.perplexity ? "yes" : "no")); });
+    }
+    return out.join("\n").slice(0, 6000);
+  }
+  function syncGate(){
+    var f = $("gateform");
+    f.website.value = state.ready ? state.ready.url : $("url").value.trim();
+    f["readiness-score"].value = state.ready ? state.ready.score : "";
+    f["visibility-score"].value = state.prompts.length ? visScore().pct + "%" : "";
+    f.category.value = state.category || "";
+    f.report.value = plainReport();
+  }
+
+  $("gateform").addEventListener("submit", function(e){
+    e.preventDefault();
+    var f = e.target; $("gateerr").textContent = "";
+    if (!f.checkValidity()) { f.reportValidity(); return; }
+    syncGate();
+    $("gatebtn").disabled = true; $("gatebtn").textContent = "Unlocking…";
+    var body = new URLSearchParams(new FormData(f)).toString();
+    fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: body })
+      .catch(function(){ /* still unlock: the visitor shouldn't lose their report */ })
+      .then(function(){
+        state.unlocked = true;
+        $("checklist").classList.remove("locked");
+        $("gate").hidden = true;
+        renderReport();
+        $("report").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+  });
+
+  function renderReport(){
+    $("report").hidden = false;
+    var d = state.ready;
+    $("reporttitle").textContent = state.company ? "AI visibility report: " + state.company : "Your AI visibility report";
+    $("reportmeta").textContent = "Generated " + new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }) + " by citekind.com/check. Results are indicative.";
+    if (d) {
+      $("reportready").hidden = false;
+      $("reportready").innerHTML = '<h3 style="font-size:22px">AI readiness: ' + d.score + ' / 100</h3><p class="site">' + esc(d.url) + '</p>' +
+        d.checks.map(function(c){
+          var bots = c.bots ? '<div class="bots">' + c.bots.map(function(b){ return '<span class="' + (b.blocked ? "no" : "") + '">' + esc(b.ua) + (b.blocked ? " blocked" : " allowed") + '</span>'; }).join("") + '</div>' : "";
+          return '<div class="item s-' + c.status + '"><h3><span class="dot" aria-hidden="true">' + sym[c.status] + '</span>' + esc(c.label) + '<span class="pts">' + c.points + ' / ' + c.max + '</span></h3>' +
+            '<p>' + esc(c.detail) + '</p>' + bots + (c.fix ? '<p class="fix"><b>Fix:</b> ' + esc(c.fix) + '</p>' : "") + (c.note ? '<p class="tiny">' + esc(c.note) + '</p>' : "") + '</div>';
+        }).join("");
+    } else $("reportready").hidden = true;
+    if (state.prompts.length) {
+      var v = visScore();
+      $("reportself").hidden = false;
+      $("reportself").innerHTML = '<h3 style="font-size:22px">AI visibility self-test: ' + v.pct + '%</h3><p class="small">' + visText(v) + '</p>' +
+        state.prompts.map(function(p){
+          return '<div class="item"><p class="fix">' + esc(p.q) + '</p><p>ChatGPT: <b>' + (p.chatgpt ? "named" : "not named") + '</b> · Perplexity: <b>' + (p.perplexity ? "named" : "not named") + '</b></p></div>';
+        }).join("");
+    } else $("reportself").hidden = true;
+    $("reportempty").hidden = !!(d || state.prompts.length);
+  }
+
+  $("again").addEventListener("click", function(e){ e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); $("url").value = ""; $("url").focus(); });
+})();
+</script>
+</body>
+</html>

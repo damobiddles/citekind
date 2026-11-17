@@ -1,0 +1,19 @@
+# Citekind
+
+> Citekind is an AI search visibility (answer engine optimisation) consultancy for B2B cybersecurity and fintech scale-ups in the UK and Europe. It helps companies get found, cited and recommended by ChatGPT, Perplexity, Gemini, Copilot and Google AI Overviews. It is led by a former cybersecurity CMO.
+
+## Services
+
+- [AI Visibility Audit](https://citekind.com/#audit): a fixed-price audit that tests real buyer prompts across the major AI assistants, benchmarks against competitors and delivers a prioritised 90-day plan.
+- [Services](https://citekind.com/#services): answer-ready content programmes and fractional CMO support for B2B tech.
+- [Free AI visibility check](https://citekind.com/check/): an instant AI readiness score for any website plus a guided self-test of what AI assistants say.
+
+## Guides
+
+- [How AI assistants decide which B2B vendors to recommend](https://citekind.com/blog/how-ai-assistants-choose-vendors.html)
+- [A 30-minute AI visibility check you can run this week](https://citekind.com/blog/ai-visibility-self-check.html)
+- [Introducing Citekind](https://citekind.com/blog/introducing-citekind.html)
+
+## Contact
+
+- [Book an audit](https://citekind.com/#contact)
