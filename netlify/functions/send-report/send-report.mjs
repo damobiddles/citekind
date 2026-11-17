@@ -133,7 +133,7 @@ ${readyHtml}${selfHtml}
 <tr><td style="padding:24px 32px 32px">
   <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#18212b;border-radius:14px"><tr><td style="padding:24px 26px">
     <div style="${serif};font-size:20px;font-weight:bold;color:#ffffff;line-height:1.3">Want to know exactly what AI says about you, and how to change it?</div>
-    <div style="${font};font-size:14px;color:#b7c1c9;margin:8px 0 18px;line-height:1.5">The AI Visibility Audit tests your real buyer prompts across ChatGPT, Perplexity, Gemini, Copilot and Google AI Overviews, benchmarks you against competitors and gives you a 90-day plan.</div>
+    <div style="${font};font-size:14px;color:#b7c1c9;margin:8px 0 18px;line-height:1.5">The AI Visibility Audit tests 30 to 50 real buyer questions across ChatGPT, Perplexity, Gemini, Copilot and Google AI Overviews, benchmarks you against competitors and gives you a 90-day plan.</div>
     <a href="${SITE}/#contact" style="display:inline-block;background:#37d6a6;color:#18212b;${font};font-size:15px;font-weight:bold;text-decoration:none;padding:12px 22px;border-radius:999px">Book your audit</a>
   </td></tr></table>
   ${canReply ? `<p style="${font};font-size:14px;color:#18202a;margin:18px 0 0;line-height:1.6">Any questions about your results? Just reply to this email.</p>` : ""}
