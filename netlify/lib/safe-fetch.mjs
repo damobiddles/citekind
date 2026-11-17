@@ -10,26 +10,32 @@ import dns from "node:dns";
 import net from "node:net";
 import zlib from "node:zlib";
 
-const blocked = new net.BlockList();
+// Separate lists: Node's BlockList matches IPv4 addresses against
+// IPv4-mapped IPv6 rules, so one shared list would block every IPv4 address.
+const blocked4 = new net.BlockList();
+const blocked6 = new net.BlockList();
 [
   ["0.0.0.0", 8], ["10.0.0.0", 8], ["100.64.0.0", 10], ["127.0.0.0", 8],
   ["169.254.0.0", 16], ["172.16.0.0", 12], ["192.0.0.0", 24], ["192.0.2.0", 24],
   ["192.88.99.0", 24], ["192.168.0.0", 16], ["198.18.0.0", 15], ["198.51.100.0", 24],
   ["203.0.113.0", 24], ["224.0.0.0", 4], ["240.0.0.0", 4],
-].forEach(([a, p]) => blocked.addSubnet(a, p, "ipv4"));
+].forEach(([a, p]) => blocked4.addSubnet(a, p, "ipv4"));
 [
-  ["::", 128], ["::1", 128], ["::ffff:0:0", 96], ["64:ff9b::", 96], ["100::", 64],
+  ["::", 128], ["::1", 128], ["64:ff9b::", 96], ["100::", 64],
   ["2001::", 32], ["2001:db8::", 32], ["2002::", 16], ["fc00::", 7], ["fe80::", 10], ["ff00::", 8],
-].forEach(([a, p]) => blocked.addSubnet(a, p, "ipv6"));
+].forEach(([a, p]) => blocked6.addSubnet(a, p, "ipv6"));
 
 export function isBlockedIp(ip) {
   const fam = net.isIP(ip);
   if (!fam) return true;
   if (fam === 6) {
-    const m = ip.toLowerCase().match(/^::ffff:(\d+\.\d+\.\d+\.\d+)$/);
-    if (m) return blocked.check(m[1], "ipv4");
+    const lower = ip.toLowerCase();
+    const m = lower.match(/^::ffff:(\d+\.\d+\.\d+\.\d+)$/);
+    if (m) return blocked4.check(m[1], "ipv4");
+    if (/^::ffff:/.test(lower)) return true; // other IPv4-mapped spellings: refuse
+    return blocked6.check(ip, "ipv6");
   }
-  return blocked.check(ip, fam === 4 ? "ipv4" : "ipv6");
+  return blocked4.check(ip, "ipv4");
 }
 
 export class FetchError extends Error {
