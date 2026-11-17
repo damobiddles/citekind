@@ -191,6 +191,9 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);border-c
 .bots{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .bots span{font-size:12px;border-radius:999px;padding:3px 10px;border:1px solid var(--line);background:#fff}
 .bots span.no{border-color:#e9b8b2;background:#fbe9e7;color:var(--bad)}
+.emailstatus{margin:14px 0 18px;padding:12px 16px;border-radius:10px;font-size:15px;background:#fff;border:1px solid var(--line)}
+.emailstatus.ok{background:#eaf8f2;border-color:#bfe8d8;color:var(--accent-ink)}
+.emailstatus.bad{background:#fdf3de;border-color:#f1d9a6;color:var(--warm-ink)}
 .report-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
 
 .cta{background:var(--ink);color:#fff;border-radius:var(--radius);padding:30px;display:flex;justify-content:space-between;align-items:center;gap:20px 32px;flex-wrap:wrap;margin-top:24px}
@@ -261,7 +264,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   <div class="wrap">
     <div><b><i>1</i>Readiness</b><span>We read your site the way AI crawlers do: robots.txt, structured data, headline, plain-HTML content and more.</span></div>
     <div><b><i>2</i>Self-test</b><span>We write five buyer prompts for your category. You ask ChatGPT and Perplexity in one click and tick when you're named.</span></div>
-    <div><b><i>3</i>Your report</b><span>See your scores instantly, then unlock the full report with every finding and the fix for each.</span></div>
+    <div><b><i>3</i>Your report</b><span>See your scores instantly, then get the full report by email, with every finding and the fix for each.</span></div>
   </div>
 </div>
 
@@ -326,7 +329,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <div>
       <p class="eyebrow">Your full report</p>
       <h2>Unlock every finding and the fix for each</h2>
-      <p class="lead">The full report explains each check, which AI crawlers you block, and your self-test results in one place. You can save it as a PDF.</p>
+      <p class="lead">We'll email you the full report and show it here straight away. It explains each check, which AI crawlers you block, and your self-test results in one place.</p>
       <ul>
         <li>All nine readiness checks, with the detail behind each score</li>
         <li>Your AI crawler access, bot by bot</li>
@@ -347,9 +350,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <label>Work email<input type="email" name="email" required autocomplete="email"></label>
       </div>
       <label>Company<input name="company" id="gatecompany" autocomplete="organization"></label>
-      <button class="btn btn-primary" type="submit" id="gatebtn">Show my full report</button>
+      <button class="btn btn-primary" type="submit" id="gatebtn">Email me the full report</button>
       <p class="err" id="gateerr" role="alert" style="color:var(--bad);margin:0"></p>
-      <p class="tiny">We'll only use your details to follow up about your report. No mailing lists, and nothing shared.</p>
+      <p class="tiny">We'll use your details to send your report and follow up about it. No mailing lists, and nothing shared.</p>
     </form>
   </div>
 </section>
@@ -359,6 +362,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <p class="eyebrow">Full report</p>
     <h2 id="reporttitle">Your AI visibility report</h2>
     <p class="small" id="reportmeta"></p>
+    <p class="emailstatus" id="emailstatus" role="status" hidden></p>
     <div class="panel report" id="reportready" hidden></div>
     <div class="panel report" id="reportself" hidden></div>
     <div class="panel" id="reportempty" hidden><p class="muted">Run the readiness check at the top of the page and the self-test above, and your results will appear here.</p></div>
@@ -482,6 +486,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     ];
     state.prompts.forEach(function(p){ p.chatgpt = false; p.perplexity = false; });
     state.company = co; state.category = cat;
+    state.inputs = { company: co, category: cat, audience: $("audience").value.trim(), region: reg, competitor: comp };
     $("prompts").innerHTML = state.prompts.map(function(p, i){
       var enc = encodeURIComponent(p.q);
       var lbl = p.brand ? "Recommended in" : "Named in";
@@ -548,6 +553,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: body })
       .catch(function(){ /* still unlock: the visitor shouldn't lose their report */ })
       .then(function(){
+        sendEmail(f);
         state.unlocked = true;
         $("checklist").classList.remove("locked");
         $("gate").hidden = true;
@@ -555,6 +561,25 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         $("report").scrollIntoView({ behavior: "smooth", block: "start" });
       });
   });
+
+  function sendEmail(f){
+    var msg = $("emailstatus");
+    msg.hidden = false; msg.className = "emailstatus"; msg.textContent = "Emailing your report to " + f.email.value + "…";
+    var self = null;
+    if (state.prompts.length) {
+      var ticks = [];
+      state.prompts.forEach(function(p){ ticks.push(!!p.chatgpt, !!p.perplexity); });
+      self = { company: state.inputs.company, category: state.inputs.category, audience: state.inputs.audience, region: state.inputs.region, competitor: state.inputs.competitor, ticks: ticks };
+    }
+    fetch("/api/send-report", { method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: f.name.value, email: f.email.value, company: f.company.value, hp: f["bot-field"].value, ready: state.ready, self: self }) })
+      .then(function(r){ return r.json().catch(function(){ return { error: "We couldn't send the email just now, but your report is below." }; }); })
+      .then(function(d){
+        if (d && d.sent) { msg.className = "emailstatus ok"; msg.textContent = "Sent. Your report is on its way to " + f.email.value + " (check your spam folder if it's not there in a few minutes)."; }
+        else throw new Error(d && d.error);
+      })
+      .catch(function(err){ msg.className = "emailstatus bad"; msg.textContent = (err && err.message) || "We couldn't send the email just now, but your report is below."; });
+  }
 
   function renderReport(){
     $("report").hidden = false;
