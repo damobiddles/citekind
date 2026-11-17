@@ -1,8 +1,9 @@
 // POST /api/check  { url, hp }  ->  AI readiness report (JSON)
 // Results are indicative: we only look at the home page, robots.txt,
 // llms.txt and the sitemap.
-import { safeFetch, checkUrl, FetchError } from "./safe-fetch.mjs";
-import { analyse } from "./analyse.mjs";
+import { safeFetch, checkUrl, FetchError } from "../../lib/safe-fetch.mjs";
+import { analyse } from "../../lib/analyse.mjs";
+import { sign } from "../../lib/sign.mjs";
 
 export const config = {
   path: "/api/check",
@@ -86,6 +87,7 @@ export default async (req, context) => {
 
   const result = analyse({ finalUrl: home.url, html: home.body, robots, llms, sitemap });
   result.checkedAt = new Date().toISOString();
+  result.sig = sign(result);
   cache.set(key, { at: Date.now(), result });
   if (cache.size > 500) cache.delete(cache.keys().next().value);
   return json(200, result);
