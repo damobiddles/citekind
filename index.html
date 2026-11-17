@@ -169,6 +169,129 @@ input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);border-c
 .wm.caps{text-transform:uppercase;letter-spacing:.16em;font-size:18px}
 @media(max-width:600px){.logo-row{gap:22px 34px}.logo-row svg{height:28px}.wm{font-size:17px}.wm.caps{font-size:15px}}
 
+/* how the audit works (animated) */
+.how{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.hw{display:grid;grid-template-columns:240px 1fr;gap:36px;align-items:start}
+.hw-rail{list-style:none;display:grid;gap:4px;counter-reset:hw}
+.hw-rail button{width:100%;text-align:left;background:none;border:0;font:inherit;color:var(--muted);cursor:pointer;display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:center;padding:10px 12px;border-radius:10px;font-size:15px;font-weight:500;position:relative;overflow:hidden;transition:background .2s,color .2s}
+.hw-rail button:hover{background:var(--paper);color:var(--text)}
+.hw-rail button:focus-visible{outline:2px solid var(--accent-ink);outline-offset:2px}
+.hw-rail .num{width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:13px;font-weight:600;transition:all .25s}
+.hw-rail button[aria-current="step"]{background:var(--paper);color:var(--ink)}
+.hw-rail button[aria-current="step"] .num{background:var(--ink);border-color:var(--ink);color:var(--accent)}
+.hw-rail button.done .num{border-color:var(--accent-ink);color:var(--accent-ink)}
+.hw-rail .bar{position:absolute;left:12px;right:12px;bottom:4px;height:2px;border-radius:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;opacity:0}
+.hw-rail button[aria-current="step"] .bar{opacity:1}
+.hw.playing .hw-rail button[aria-current="step"] .bar{animation:hwbar var(--dur,3s) linear forwards}
+.hw.paused .hw-rail button[aria-current="step"] .bar{animation-play-state:paused}
+@keyframes hwbar{to{transform:scaleX(1)}}
+.hw-ctl{margin-top:14px;display:flex;align-items:center;gap:8px;background:none;border:1px solid var(--line);border-radius:999px;padding:7px 14px;font:inherit;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer}
+.hw-ctl[hidden]{display:none!important}
+.hw-ctl:hover{color:var(--text);border-color:#cfc8b9}
+.hw-ctl:focus-visible{outline:2px solid var(--accent-ink);outline-offset:2px}
+.hw-ctl svg{width:12px;height:12px;fill:currentColor}
+
+.hw-screen{background:var(--ink);color:#dfe7ee;border-radius:18px;box-shadow:0 30px 60px rgba(11,27,43,.18);overflow:hidden;position:relative}
+.hw-screen::after{content:"";position:absolute;right:-160px;bottom:-200px;width:460px;height:460px;border-radius:50%;background:radial-gradient(circle,rgba(55,214,166,.14),transparent 65%);pointer-events:none}
+.hw-top{display:flex;align-items:center;gap:7px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.07);font-size:13px;color:#8a99a8}
+.hw-top i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.14)}
+.hw-top span{margin-left:8px}
+.hw-prompt{margin:20px 22px 0;display:flex;gap:10px;align-items:flex-start;background:var(--ink-2);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:14px 16px;font-size:16px;color:#fff;min-height:54px}
+.hw-prompt b{background:rgba(255,255,255,.1);border-radius:6px;padding:2px 8px;font-size:12px;font-weight:600;flex-shrink:0;margin-top:2px;color:#dfe7ee}
+.hw-caret{display:inline-block;width:2px;height:1.1em;background:var(--accent);vertical-align:-3px;margin-left:2px;opacity:0}
+.hw.typing .hw-caret{opacity:1;animation:hwblink .8s steps(1) infinite}
+@keyframes hwblink{50%{opacity:0}}
+.hw-stage{display:grid;padding:22px;position:relative;z-index:1}
+.hw-scene{grid-area:1/1;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .45s ease,transform .45s ease,visibility 0s .45s}
+.hw-scene.on{opacity:1;visibility:visible;transform:none;transition:opacity .45s ease,transform .45s ease}
+.hw-tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.hw-tag.warn{color:var(--warm)}
+.hw-scene h3{color:#fff;font-size:22px;margin-bottom:14px}
+.hw-scene p{color:#b9c6d3;font-size:15px}
+.hw-ans p{margin-bottom:10px}
+.hw-ans .name{color:#fff;font-weight:500}
+.hw-ans .hl{background:rgba(55,214,166,.18);color:#fff;border-radius:4px;padding:0 5px;font-weight:600}
+.hw-missing{margin-top:14px;display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--warm);border:1px dashed rgba(242,184,75,.5);border-radius:999px;padding:5px 12px}
+.hw-cite{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.hw-cite span{font-size:12px;border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:3px 10px;color:#cfd9e2}
+.hw-cite span.you{border-color:var(--accent);color:var(--accent)}
+
+.hw-chips{display:flex;flex-wrap:wrap;gap:10px}
+.hw-chip{display:flex;align-items:center;gap:10px;background:var(--ink-2);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 14px;font-size:15px;color:#fff}
+.hw-chip::before{content:"";width:18px;height:18px;border-radius:50%;flex-shrink:0;background:rgba(55,214,166,.18) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5 10.5l3 3 7-7' stroke='%2337d6a6' stroke-width='2.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") center/14px no-repeat}
+.hw-pop{opacity:0;transform:translateY(6px) scale(.98);transition:opacity .4s ease,transform .4s ease}
+.hw-scene.on .hw-pop{opacity:1;transform:none}
+.hw-scene.on .hw-pop:nth-child(2){transition-delay:.35s}
+.hw-scene.on .hw-pop:nth-child(3){transition-delay:.7s}
+.hw-scene.on .hw-pop:nth-child(4){transition-delay:1.05s}
+.hw-scene.on .hw-pop:nth-child(5){transition-delay:1.4s}
+
+.hw-ais{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+.hw-ai{display:flex;align-items:center;gap:10px;white-space:nowrap;border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 14px;font-size:15px;color:#8a99a8;background:rgba(255,255,255,.02);transition:color .35s,border-color .35s,background .35s,box-shadow .35s}
+.hw-ai i{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.18);flex-shrink:0;transition:background .35s,box-shadow .35s}
+.hw-ai.lit{color:#fff;border-color:rgba(55,214,166,.5);background:rgba(55,214,166,.08)}
+.hw-ai.lit i{background:var(--accent);box-shadow:0 0 0 4px rgba(55,214,166,.18)}
+
+.hw-bars{display:grid;gap:12px}
+.hw-row{display:grid;grid-template-columns:118px 1fr;gap:12px;align-items:center;font-size:14px}
+.hw-row span{color:#b9c6d3}
+.hw-row.you span{color:var(--accent);font-weight:600}
+.hw-track{height:14px;border-radius:7px;background:rgba(255,255,255,.06);overflow:hidden}
+.hw-fill{height:100%;width:var(--w);border-radius:7px;background:#4b6277;transform:scaleX(0);transform-origin:left;transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.hw-row.you .hw-fill{background:var(--warm)}
+.hw-scene.on .hw-fill{transform:scaleX(1)}
+.hw-scene.on .hw-row:nth-child(2) .hw-fill{transition-delay:.15s}
+.hw-scene.on .hw-row:nth-child(3) .hw-fill{transition-delay:.3s}
+.hw-scene.on .hw-row:nth-child(4) .hw-fill{transition-delay:.45s}
+.hw-note{margin-top:14px;font-size:12px!important;color:#8a99a8!important}
+
+.hw-map{position:relative;height:210px}
+.hw-map svg{position:absolute;inset:0;width:100%;height:100%}
+.hw-map line{stroke:rgba(255,255,255,.16);stroke-width:1.5;stroke-dasharray:4 5}
+.hw-map line.gap{stroke:rgba(242,184,75,.55)}
+.hw-node{position:absolute;transform:translate(-50%,-50%);font-size:13px;white-space:nowrap;border:1px solid rgba(255,255,255,.15);background:var(--ink-2);border-radius:999px;padding:5px 12px;color:#dfe7ee}
+.hw-node.core{background:var(--accent);color:var(--ink);font-weight:600;border-color:var(--accent);padding:8px 16px}
+.hw-node.gap{border-color:rgba(242,184,75,.6);color:var(--warm)}
+.hw-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:12px;color:#8a99a8}
+.hw-legend span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;background:rgba(255,255,255,.4)}
+.hw-legend span.g::before{background:var(--warm)}
+
+.hw-plan{display:grid;gap:10px}
+.hw-plan .hw-pop{display:grid;grid-template-columns:92px 1fr;gap:14px;align-items:center;background:var(--ink-2);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:12px 14px;font-size:15px;color:#fff}
+.hw-plan em{font-style:normal;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+
+.hw-cta{margin-top:40px;display:flex;align-items:center;justify-content:space-between;gap:20px 32px;flex-wrap:wrap;background:var(--ink);color:#fff;border-radius:var(--radius);padding:26px 30px}
+.hw-cta p{font-family:Fraunces,Georgia,serif;font-size:22px;font-weight:600;line-height:1.25}
+.hw-cta p span{display:block;font-family:Inter,system-ui,sans-serif;font-size:15px;font-weight:400;color:#b9c6d3;margin-top:4px}
+.hw-cta div{display:flex;gap:12px;flex-wrap:wrap}
+
+@media(max-width:860px){
+  .hw{grid-template-columns:1fr;gap:16px}
+  .hw-side{display:flex;align-items:center;gap:12px}
+  .hw-rail{grid-auto-flow:column;grid-auto-columns:1fr;gap:6px;flex:1}
+  .hw-rail button{grid-template-columns:1fr;padding:0;height:26px;border-radius:6px;background:none!important}
+  .hw-rail .label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+  .hw-rail .num{display:none}
+  .hw-rail .bar,.hw-rail button::before{left:0;right:0;bottom:11px;height:4px}
+  .hw-rail button::before{content:"";position:absolute;border-radius:2px;background:var(--line)}
+  .hw-rail button.done::before{background:var(--accent-ink)}
+  .hw-rail .bar{z-index:1}
+  .hw-ctl{margin-top:0;padding:7px 10px}
+  .hw-ctl .t{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+  .hw-prompt{margin:16px 16px 0;font-size:15px}
+  .hw-stage{padding:18px 16px}
+  .hw-row{grid-template-columns:96px 1fr;font-size:13px}
+  .hw-plan .hw-pop{grid-template-columns:1fr;gap:2px}
+  .hw-ais{grid-template-columns:1fr 1fr}
+  .hw-cta{padding:22px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hw-scene,.hw-scene.on,.hw-pop,.hw-fill,.hw-ai,.hw-ai i{transition:none!important}
+  .hw-scene{transform:none}
+  .hw-rail .bar{display:none}
+}
+
 footer{background:#07131f;color:#8a99a8;font-size:14px;padding:32px 0}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 </style>
@@ -182,6 +305,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       Citekind
     </a>
     <ul>
+      <li><a href="#how">How it works</a></li>
       <li><a href="#audit">The audit</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#sectors">Who it's for</a></li>
@@ -252,6 +376,127 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
       <div class="pcard"><div class="n">01</div><h3>Invisible in AI answers</h3><p>Competitors with clearer, better-structured content get named. You don't, even when your product is stronger.</p></div>
       <div class="pcard"><div class="n">02</div><h3>Described wrongly</h3><p>Assistants repeat outdated positioning, the wrong category or a competitor's claims about you. Nobody on your team is checking.</p></div>
       <div class="pcard"><div class="n">03</div><h3>Content that doesn't get cited</h3><p>Blog volume isn't the answer. AI models cite sources that are specific, credible, well-structured and corroborated elsewhere.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how" aria-labelledby="how-title">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">How the audit works</p>
+      <h2 id="how-title">From left off the shortlist to named in the answer</h2>
+      <p class="lead">In two weeks we find out why AI assistants recommend your competitors instead of you, then hand you a clear plan to change it.</p>
+    </div>
+
+    <div class="hw" id="hw">
+      <div class="hw-side">
+        <ol class="hw-rail" aria-label="Audit stages">
+          <li><button type="button" data-step="0"><span class="num">1</span><span class="label">Where you stand today</span><span class="bar"></span></button></li>
+          <li><button type="button" data-step="1"><span class="num">2</span><span class="label">Kick-off</span><span class="bar"></span></button></li>
+          <li><button type="button" data-step="2"><span class="num">3</span><span class="label">Testing across AI</span><span class="bar"></span></button></li>
+          <li><button type="button" data-step="3"><span class="num">4</span><span class="label">Share of voice</span><span class="bar"></span></button></li>
+          <li><button type="button" data-step="4"><span class="num">5</span><span class="label">Source map</span><span class="bar"></span></button></li>
+          <li><button type="button" data-step="5"><span class="num">6</span><span class="label">90-day plan</span><span class="bar"></span></button></li>
+          <li><button type="button" data-step="6"><span class="num">7</span><span class="label">The goal</span><span class="bar"></span></button></li>
+        </ol>
+        <button type="button" class="hw-ctl" id="hw-ctl" aria-pressed="false" hidden>
+          <svg viewBox="0 0 12 12" aria-hidden="true"><path class="ic" d="M2 1h3v10H2zM7 1h3v10H7z"/></svg><span class="t">Pause animation</span>
+        </button>
+      </div>
+
+      <div class="hw-screen">
+        <div class="hw-top" aria-hidden="true"><i></i><i></i><i></i><span>AI assistant</span></div>
+        <div class="hw-prompt">
+          <b>Prompt</b>
+          <span><span class="sr-only">Which MDR providers suit a UK fintech?</span><span id="hw-typed" aria-hidden="true">Which MDR providers suit a UK fintech?</span><span class="hw-caret" aria-hidden="true"></span></span>
+        </div>
+
+        <div class="hw-stage">
+          <div class="hw-scene hw-ans" data-scene="0">
+            <p class="hw-tag warn">Today</p>
+            <p>For a regulated UK fintech, look for MDR providers with FCA-aware reporting and 24/7 UK coverage. Strong options include <span class="name">Competitor A</span>, <span class="name">Competitor B</span> and <span class="name">Competitor C</span>.</p>
+            <p class="hw-missing">Your company isn't mentioned</p>
+          </div>
+
+          <div class="hw-scene" data-scene="1">
+            <p class="hw-tag">Step 1 · Kick-off</p>
+            <h3>We agree what matters to your pipeline</h3>
+            <div class="hw-chips">
+              <span class="hw-chip hw-pop">Your category</span>
+              <span class="hw-chip hw-pop">Your real competitors</span>
+              <span class="hw-chip hw-pop">The questions buyers ask</span>
+            </div>
+          </div>
+
+          <div class="hw-scene" data-scene="2">
+            <p class="hw-tag">Step 2 · Testing</p>
+            <h3>We ask your buyers' questions everywhere they ask them</h3>
+            <div class="hw-ais">
+              <span class="hw-ai"><i></i>ChatGPT</span>
+              <span class="hw-ai"><i></i>Perplexity</span>
+              <span class="hw-ai"><i></i>Gemini</span>
+              <span class="hw-ai"><i></i>Copilot</span>
+              <span class="hw-ai"><i></i>AI Overviews</span>
+            </div>
+          </div>
+
+          <div class="hw-scene" data-scene="3">
+            <p class="hw-tag">Step 3 · Share of voice</p>
+            <h3>See who gets recommended, and how often</h3>
+            <div class="hw-bars">
+              <div class="hw-row"><span>Competitor A</span><div class="hw-track"><div class="hw-fill" style="--w:82%"></div></div></div>
+              <div class="hw-row"><span>Competitor B</span><div class="hw-track"><div class="hw-fill" style="--w:64%"></div></div></div>
+              <div class="hw-row"><span>Competitor C</span><div class="hw-track"><div class="hw-fill" style="--w:47%"></div></div></div>
+              <div class="hw-row you"><span>Your company</span><div class="hw-track"><div class="hw-fill" style="--w:12%"></div></div></div>
+            </div>
+            <p class="hw-note">Illustrative example. Your audit uses your own prompts and competitors.</p>
+          </div>
+
+          <div class="hw-scene" data-scene="4">
+            <p class="hw-tag">Step 4 · Source map</p>
+            <h3>Find the sources AI trusts, and where you're missing</h3>
+            <div class="hw-map" aria-hidden="true">
+              <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+                <line x1="50" y1="50" x2="16" y2="16"/><line x1="50" y1="50" x2="84" y2="16" class="gap"/>
+                <line x1="50" y1="50" x2="12" y2="80" class="gap"/><line x1="50" y1="50" x2="88" y2="80"/>
+                <line x1="50" y1="50" x2="50" y2="92" class="gap"/>
+              </svg>
+              <span class="hw-node core" style="left:50%;top:50%">AI answer</span>
+              <span class="hw-node" style="left:20%;top:16%">Your website</span>
+              <span class="hw-node gap" style="left:80%;top:16%">Review sites</span>
+              <span class="hw-node gap" style="left:18%;top:80%">Analyst reports</span>
+              <span class="hw-node" style="left:82%;top:80%">Trade media</span>
+              <span class="hw-node gap" style="left:50%;top:94%">Forums</span>
+            </div>
+            <p class="sr-only">Example source map: AI answers draw on your website, review sites, analyst reports, trade media and forums. Gaps are where competitors appear and you don't.</p>
+            <div class="hw-legend" aria-hidden="true"><span>You're present</span><span class="g">Gap to close</span></div>
+          </div>
+
+          <div class="hw-scene" data-scene="5">
+            <p class="hw-tag">Step 5 · 90-day plan</p>
+            <h3>Leave with a prioritised plan you can act on</h3>
+            <div class="hw-plan">
+              <div class="hw-pop"><em>Days 1–30</em>Quick wins: fix how AI describes you</div>
+              <div class="hw-pop"><em>Days 31–60</em>Publish answer-ready buyer content</div>
+              <div class="hw-pop"><em>Days 61–90</em>Earn the third-party mentions AI relies on</div>
+            </div>
+          </div>
+
+          <div class="hw-scene hw-ans" data-scene="6">
+            <p class="hw-tag">The goal</p>
+            <p>For a regulated UK fintech, look for MDR providers with FCA-aware reporting and 24/7 UK coverage. Strong options include <span class="hl">Your company</span>, <span class="name">Competitor A</span> and <span class="name">Competitor B</span>.</p>
+            <div class="hw-cite"><span>Sources</span><span class="you">yourcompany.com</span><span>review site</span><span>analyst report</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hw-cta">
+      <p>Find out what AI says about you today.<span>Fixed fee, two weeks, and a plan you keep either way.</span></p>
+      <div>
+        <a class="btn btn-primary" href="#contact">Request an audit</a>
+        <a class="btn btn-ghost" href="#audit">See what's included</a>
+      </div>
     </div>
   </div>
 </section>
@@ -424,6 +669,107 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
     <span>Based in Buckinghamshire, working across the UK and Europe.</span>
   </div>
 </footer>
+
+<script>
+(function(){
+  var root=document.getElementById('hw');
+  if(!root) return;
+  var scenes=root.querySelectorAll('.hw-scene');
+  var steps=root.querySelectorAll('.hw-rail button');
+  var ais=root.querySelectorAll('.hw-ai');
+  var typed=document.getElementById('hw-typed');
+  var ctl=document.getElementById('hw-ctl');
+  var full=typed.textContent;
+  var DUR=[4200,3400,4000,3800,3800,3800,6500];
+  var rm=window.matchMedia('(prefers-reduced-motion: reduce)');
+  var cur=-1, timer=null, typeTimer=null, aiTimers=[], started=false, inView=false, userPaused=false, hover=false;
+
+  function clearAll(){clearTimeout(timer);clearTimeout(typeTimer);aiTimers.forEach(clearTimeout);aiTimers=[];}
+  function auto(){return !rm.matches && !userPaused && !hover && inView;}
+
+  function show(i){
+    cur=i;
+    scenes.forEach(function(s,n){var on=n===i;s.classList.toggle('on',on);s.setAttribute('aria-hidden',on?'false':'true');});
+    steps.forEach(function(b,n){
+      b.classList.toggle('done',n<i);
+      if(n===i){b.setAttribute('aria-current','step');}else{b.removeAttribute('aria-current');}
+      var bar=b.querySelector('.bar');bar.style.animation='none';void bar.offsetWidth;bar.style.animation='';
+    });
+    root.style.setProperty('--dur',DUR[i]+'ms');
+    ais.forEach(function(a){a.classList.remove('lit');});
+    if(i===2){
+      if(rm.matches){ais.forEach(function(a){a.classList.add('lit');});}
+      else ais.forEach(function(a,n){aiTimers.push(setTimeout(function(){a.classList.add('lit');},300+n*550));});
+    }
+  }
+
+  function schedule(){
+    clearTimeout(timer);
+    if(auto()) timer=setTimeout(function(){go((cur+1)%scenes.length);},DUR[cur]);
+    root.classList.toggle('playing',auto());
+    root.classList.toggle('paused',!auto());
+  }
+
+  function go(i){
+    clearAll();
+    if(i===0 && !rm.matches){
+      // retype the buyer prompt at the start of each loop
+      show(-1);steps[0].setAttribute('aria-current','step');
+      var n=0;typed.textContent='';root.classList.add('typing');
+      (function tick(){
+        if(!auto()){typed.textContent=full;root.classList.remove('typing');show(0);schedule();return;}
+        n++;typed.textContent=full.slice(0,n);
+        if(n<full.length){typeTimer=setTimeout(tick,38+Math.random()*40);}
+        else{typeTimer=setTimeout(function(){root.classList.remove('typing');show(0);schedule();},350);}
+      })();
+      return;
+    }
+    typed.textContent=full;root.classList.remove('typing');
+    show(i);schedule();
+  }
+
+  steps.forEach(function(b,n){b.addEventListener('click',function(){
+    if(!rm.matches){userPaused=true;setCtl();}
+    clearAll();typed.textContent=full;root.classList.remove('typing');show(n);schedule();
+  });});
+
+  function setCtl(){
+    ctl.setAttribute('aria-pressed',userPaused?'true':'false');
+    ctl.querySelector('.t').textContent=userPaused?'Play animation':'Pause animation';
+    ctl.querySelector('.ic').setAttribute('d',userPaused?'M2 1l9 5-9 5z':'M2 1h3v10H2zM7 1h3v10H7z');
+  }
+  ctl.addEventListener('click',function(){
+    userPaused=!userPaused;setCtl();
+    if(!userPaused && cur===scenes.length-1){go(0);}else{schedule();}
+  });
+
+  // pause while the pointer is over the demo
+  var screen=root.querySelector('.hw-screen');
+  screen.addEventListener('mouseenter',function(){hover=true;schedule();});
+  screen.addEventListener('mouseleave',function(){hover=false;schedule();});
+
+  function setup(){
+    clearAll();
+    ctl.hidden=rm.matches;
+    if(rm.matches){typed.textContent=full;root.classList.remove('typing');show(cur<0?0:cur);schedule();return;}
+    if(started){schedule();}
+  }
+  rm.addEventListener && rm.addEventListener('change',setup);
+
+  // start state: first scene visible, so there's never an empty box
+  show(0);setup();
+
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        inView=e.isIntersecting;
+        if(inView && !started && !rm.matches){started=true;go(0);}
+        else schedule();
+      });
+    },{threshold:0.35}).observe(root);
+  } else {inView=true;started=true;schedule();}
+})();
+</script>
 
 </body>
 </html>
