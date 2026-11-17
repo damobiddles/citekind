@@ -4,3 +4,4 @@ Static site for Citekind, hosted on Netlify. No build step: the HTML files in th
 
 - `index.html`: home page, including the audit request form (handled by Netlify Forms)
 - `thanks.html`: page shown after the form is sent
+- `blog/`: blog index, posts, and shared `blog/blog.css`
