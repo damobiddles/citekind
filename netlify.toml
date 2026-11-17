@@ -1,2 +1,13 @@
 [build]
   publish = "."
+
+# Internal reference page: keep it out of search engines.
+[[headers]]
+  for = "/workflow/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
+
+[[headers]]
+  for = "/workflow"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow, noarchive"
