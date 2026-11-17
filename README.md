@@ -7,4 +7,4 @@ Static site for Citekind, hosted on Netlify. No build step: the HTML files in th
 - `blog/`: blog index, posts, and shared `blog/blog.css`
 - `sitemap.xml`: public pages for search engines (referenced from `robots.txt`)
 
-Brand palette ("ink and mint"): ink `#0e1215`, ink-2 `#1a2024`, deep ink `#080a0c`, mint `#37d6a6`, mint text `#0e7a5c`, paper `#f6f4ef`. Canonical domain: https://citekind.com
+Brand palette ("ink and mint"): ink `#18212b`, ink-2 `#232e3a`, deep ink `#10161d`, mint `#37d6a6`, mint text `#0e7a5c`, paper `#f6f4ef`. Canonical domain: https://citekind.com
